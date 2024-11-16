@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import React,{useState} from 'react';
 import './App.css';
+import Read from './/components/Read.js';
+import Create from './/components/Create.js';
+import Update from './/components/Update.js';
+import Delete from './/components/Delete.js';
+
 
 function App() {
+  const [key,setKey]=useState(0);
+
+  const reload=()=>{
+    setKey(key=>key+1);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Read key={key}/>
+      <Create onActionComplete={reload}/>
+      <Update onActionComplete={reload}/>
+      <Delete onActionComplete={reload}/>
     </div>
   );
 }
